@@ -4,3 +4,7 @@ pulmonary-edema-severity-grades-based-on-mimic-cxr-1.0.1
 pulmonary-edema-severity-grades-based-on-mimic-cxr-1.0.1.zip
 physionet.org
 note.txt
+classification/densenet_parameters
+classification/densenet_parameters.zip
+classification2/vgg_parameters
+classification2/vgg_parameters.zip

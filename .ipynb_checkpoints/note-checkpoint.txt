@@ -1,0 +1,114 @@
+그러면, 데이터셋 metadata를 구성하는데 필요한 부분들이 subject_id, study_id, dicom_id, dicomPath(segmentation), dicomPath(Orig, 만들어야 함), edema_severity
+(1) subject_id, study_id, dicom_id
+(2) dicomPath_seg = 그대로 가져오기만 하면 됨. Dataset class 만들 때, base_path 넘겨서 가져오도록 함.
+(3) dicomPath_ori = dicom_id로부터 만듬, 구현해둔 make_path 함수 사용해서 seg와 똑같이 files부터 시작하게 함.
+(2), (3) 만들어보니까 똑같아서 DicomPath 하나로 씀.
+결론적으로, doby_demo_metadata.csv column 총 5개임!
+
+01.18
+https://pytorch.org/get-started/locally/
+GPU 계속 False떠서 다시 공홈 들어가서 깔았다. 새로운 스크립트로
+Anaconda Prompt에서 설치했음!
+
+seg_vgg 성능 Test set 59.95%, 0.7158로 1~2 epoch만에 계속 정체
+mix_vgg 성능 seg_vgg보다는 좋으나 아마 img를 합치는 작업 땜에 느린 듯
+orig_vgg도 비슷해서 Data Augmentation을 시켜보자
+
+Random.Rotation(10) 적용
+그리고, 하이퍼파리미터 epoch, lr 자주 바꾸다보니 다르게 실행시킬 수도 있으니 유의할 것
+
+전처리 관련 논문 다운받았으니 일단 이거 보자
+모델이나 Hyperparameter 튜닝도 문제일 수도 있다.
+
+---------------------------------------
+01.19
+Batch 16으로 돌리자 8보다 빠르네 GPU
+
+Gradient Vanishing 현상
+    Learning Rate 올리거나
+    Batch를 올리면서 Back Propagation 횟수가 확 줄어들어서 그럴 수도 있겠다.
+    일단 LR Reduction Callback도 있으니까 크게 잡고 시작하자
+
+Sen, Spec도 이상하다.
+
+갑자기 왜 되지
+-----------------------------------------
+01.20
+Train Epoch: 31 [3358/3358 (100.00%)]  Accuracy: 82.64%  Loss: 0.6490
+Test set: Accuracy: 74.64%  Loss: 0.6929
+TP: 410, FP: 122, TN: 217, FN: 91
+Sensitivity: 0.8184, Specificity: 0.6401, F1-Score: 0.7938
+
+[Original]
+Train Epoch: 96 [3358/3358 (100.00%)]  Accuracy: 85.38%  Loss: 0.6324
+Test set: Accuracy: 75.48%  Loss: 0.6870
+TP: 411, FP: 116, TN: 223, FN: 90
+Sensitivity: 0.8204, Specificity: 0.6578, F1-Score: 0.7996
+
+우선 orig가 더 좋아서 Gaussian Blur 값 1로 낮춰서 더 학습 해보는 중
+-----------------------------------------
+01.21
+현재까지 mix 최고 성능
+
+[Mix(Blending)]
+Train Epoch: 96 [3358/3358 (100.00%)]  Accuracy: 87.02%  Loss: 0.6239
+Test set: Accuracy: 76.31%  Loss: 0.6859
+TP: 413, FP: 111, TN: 228, FN: 88
+Sensitivity: 0.8244, Specificity: 0.6726, F1-Score: 0.8059
+
+추가적으로 segmentation이 된 후에 mask를 통해 누끼 따는 작업을 해야 했는데
+이를 np.where를 통해 해결했다. Contour 부분에 계속 노이즈가 생겼는데
+이를 mask에서 255면 1, 0 혹은 0이면 0, 1이런 식으로 했는데 plt.show()상에는
+두 개의 픽셀 밖에 없는 줄 알았으나 아니었다.
+그래서 중간 값인 128을 threshold로 두어서 plt.show()한 결과 깔끔하게 누끼를 딴다.
+
+이거 U-Net 학습할 때도 조심해야겠다.
+
+[Merge]
+Train Epoch: 21 [3358/3358 (100.00%)]  Accuracy: 75.34%  Loss: 0.6922
+Test set: Accuracy: 75.48%  Loss: 0.6888
+TP: 423, FP: 128, TN: 211, FN: 78
+Sensitivity: 0.8443, Specificity: 0.6224, F1-Score: 0.8042
+
+[Only Segmentation]
+Train Epoch: 59 [3358/3358 (100.00%)]  Accuracy: 78.50%  Loss: 0.6713
+Test set: Accuracy: 74.29%  Loss: 0.6965
+TP: 417, FP: 132, TN: 207, FN: 84
+Sensitivity: 0.8323, Specificity: 0.6106, F1-Score: 0.7943
+
+-----------------------------------------
+24.01.21
+[Original + Blur]
+Acc 기준
+Train Epoch: 27 [3358/3358 (100.00%)]  Accuracy: 82.25%  Loss: 0.6512
+Test set: Accuracy: 75.60%  Loss: 0.6862
+TP: 398, FP: 102, TN: 237, FN: 103
+Sensitivity: 0.7944, Specificity: 0.6991, F1-Score: 0.7952
+
+F1-Score 기준
+Train Epoch: 62 [3358/3358 (100.00%)]  Accuracy: 82.73%  Loss: 0.6471
+Test set: Accuracy: 75.12%  Loss: 0.6908
+TP: 407, FP: 115, TN: 224, FN: 94
+Sensitivity: 0.8124, Specificity: 0.6608, F1-Score: 0.7957
+
+-----------------------------------------
+01.25
+
+https://github.com/LeeJunHyun/Image_Segmentation/blob/master/evaluation.py
+-----------------------------------------
+01.28
+DenseNet161 첫 에포크
+
+Train Epoch: 1 [3358/3358 (100.00%)]  Accuracy: 63.52%  Loss: 0.7570
+Test set: Accuracy: 63.57%  Loss: 0.7583
+TP: 412, FP: 217, TN: 122, FN: 89
+Sensitivity: 0.8224, Specificity: 0.3599, F1-Score: 0.7292
+================================================================
+Train Epoch: 2 [1344/3358 (40.00%)]  Accuracy: 62.57%  Loss: 0.7624
+
+-----------------------------------------
+01.31
+RuntimeError: CUDA error: unknown error
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.

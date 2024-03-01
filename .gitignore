@@ -10,3 +10,4 @@ classification2/vgg_parameters
 classification2/vgg_parameters.zip
 segmentation/parameters
 segmentation/parameters.zip
+segmentation inference/target_and_predict

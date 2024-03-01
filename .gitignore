@@ -8,3 +8,5 @@ classification/densenet_parameters
 classification/densenet_parameters.zip
 classification2/vgg_parameters
 classification2/vgg_parameters.zip
+segmentation/parameters
+segmentation/parameters.zip

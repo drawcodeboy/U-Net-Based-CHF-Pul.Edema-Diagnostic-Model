@@ -1,13 +1,20 @@
+# Dataset
 chest-x-ray-dataset-with-lung-segmentation-1.0.0
 chest-x-ray-dataset-with-lung-segmentation-1.0.0.zip
 pulmonary-edema-severity-grades-based-on-mimic-cxr-1.0.1
 pulmonary-edema-severity-grades-based-on-mimic-cxr-1.0.1.zip
 physionet.org
+
+# Project log note
 note.txt
+
+# Models Weights
 classification/densenet_parameters
 classification/densenet_parameters.zip
 classification2/vgg_parameters
 classification2/vgg_parameters.zip
 segmentation/parameters
 segmentation/parameters.zip
+
+# Segmentation Experiment result
 segmentation inference/target_and_predict

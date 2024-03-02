@@ -2,7 +2,7 @@
 
 ### U-Net 기반 아키텍처를 활용한 울혈성 심부전 환자 폐부종 진단 방법론 연구
 
-<center><p style="color: black; background-color: #fff5b1; font-size:120%"><b>⭐ 한국정보통신학회 JKIICE 논문 심사 중 ⭐</b></p></center>
+#### <div align="center"><b>⭐ 한국정보통신학회 JKIICE 논문 심사 중 ⭐</b></div>
 
 - [Paper Link](./PAPER/투고%20초안%20최종.pdf)
 

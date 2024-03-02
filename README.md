@@ -18,4 +18,4 @@
 
 > <code>streamlit</code>을 통해 구현한 웹으로 프로젝트의 전반적인 프로세스를 요약합니다.
 
-![streamlit_gif](./streamlit/full%20OMS%20streamlit.gif)
+![streamlit_gif](./streamlit/oms_streamlit.gif)

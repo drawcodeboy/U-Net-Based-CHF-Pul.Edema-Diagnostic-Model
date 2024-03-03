@@ -6,9 +6,9 @@
 
 - 링크 추가 예정
 
-## 📄 Project Description
+## 📝 Project Description
 
-[Doby's Lab (BLOG): U-Net 기반 아키텍처를 활용한 울혈성 심부전 환자 폐부종 진단 방법론 연구]()
+[📌 Doby's Lab (BLOG): U-Net 기반 아키텍처를 활용한 울혈성 심부전 환자 폐부종 진단 방법론 연구]()
 
 - 추후 추가 예정
 
@@ -49,21 +49,32 @@
 
 - Lung Segementation을 수행하는 가장 적합한 모델을 찾기 위해 <u><b>U-Net, SA U-Net, U-Net++</b></u> 아키텍처를 학습하여 성능을 비교하였습니다.
 - Segmentation Task의 경우에는 PyTorch의 활용도를 높이기 위해서 세 아키텍처 모두 직접 구현하여 사용했습니다.
-  1. <a href="">U-Net Implementation Repository</a>
-  2. <a href="">SA U-Net Implementation Repository</a>
-  3. <a href="">U-Net++ Implementation Repositiory</a>
+
+### 📄 U-Net based Architectures Repositories
+
+1. <a href="">U-Net Implementation Repository</a>
+2. <a href="">SA U-Net Implementation Repository</a>
+3. <a href="">U-Net++ Implementation Repositiory</a>
+
+### 📄 Train Setting
+
 - Loss function은 Semantic segmentation에서 보편적으로 쓰이는 <b>Dice Loss</b>를 사용했습니다.
   $$DiceLoss = \frac{2\times(|A|\cap|B|)}{|A|+|B|}$$
-- 종합적인 학습 스펙은 세 모델 전부 아래와 같습니다.
+- 종합적인 학습 스펙은 모두 동일하게 아래와 같습니다.
 
-|    Setting    |      Value       |
-| :-----------: | :--------------: |
-| Loss function | <u>Dice Loss</u> |
-|   Optimizer   |   <u>Adam</u>    |
-| Learning rate |   <u>1e-4</u>    |
-|  Decay step   |     <u>5</u>     |
-|  Activation   |  <u>Sigmoid</u>  |
-|    Epochs     |    <u>50</u>     |
+|  Loss function   |  Opimizer   | Learning rate | Decay step | Decay rate |   Activation   |  Epochs   |
+| :--------------: | :---------: | :-----------: | :--------: | :--------: | :------------: | :-------: |
+| <u>Dice Loss</u> | <u>Adam</u> |  <u>1e-4</u>  |  <u>5</u>  | <u>0.1</u> | <u>Sigmoid</u> | <u>50</u> |
+
+### 📄 Performance Table
+
+- 위와 같은 세팅을 통해 학습을 진행하였습니다.
+- SA U-Net은 DropBlock의 사이즈에 따라 2개의 학습을 진행했습니다.
+  - DropBlock 10% - 전체 이미지의 10%를 Drop
+  - DropBlock 10% - 전체 이미지의 10%를 Drop
+- U-Net++는 2가지 Mode에 따라 학습을 진행했습니다.
+  - Fast mode
+  - Accurate mode
 
 |        Model        |       Accuracy       |       F1-Score       |         AUC          |         MCC          |
 | :-----------------: | :------------------: | :------------------: | :------------------: | :------------------: |
@@ -73,6 +84,36 @@
 |   U-Net++ (fast)    |        94.60%        |        0.9795        |        0.9720        |        0.9711        |
 | U-Net++ (accurate)  |        94.59%        |        0.9793        |        0.9722        |        0.9708        |
 
+### 📄 Result
+
+- 학습 결과 Segmentation Task에서는 <u><b>U-Net</b></u>을 사용하게 되었습니다.
+- Epoch가 더 컸다면, 다른 모델들이 더 성능이 높았을 것으로 추측하고 있습니다.
+
 ## 2️⃣ 5 Data Processing Methods
 
+> 본 단락에서는 Segmentation Task 이후에 얻은 데이터를 활용한 <u>3가지 Method</u>와 그렇지 않은 <u>2가지 Method</u>를 다룹니다.
+
+![methods_figure](./figures/figure6_resize.jpg)
+
+### 🩺 <i>Experient 1</i>
+
+- 원본 이미지에 대해서는 <b>가우시안 필터링(Gaussian Filtering)</b>을 적용하고, 폐 영역 이미지와 블랜딩을 하는 Method입니다.
+- 가우시안 필터링은 비전 분야에서 노이즈 제거 효과를 하고 있으며, 가우시안 분포에 따라 중심 픽셀로부터 멀어질수록 가중치를 적게주는 역할을 하여 데이터를 처리합니다.
+  $$ G(x,y)=\frac{1}{2\pi\sigma}e^{-\frac{x^2+y^2}{2\sigma^2}}$$
+- <b>이미지 블랜딩(Image Blending)</b>은 두 이미지를 서로 합칠 때, 가중치를 통해 합치는 방법입니다.
+  $$ g(x)=(1-\alpha)f_1(x)+\alpha f_2(x)$$
+- 해당 Method를 적용한 figure는 1번째와 같습니다.
+
+### 🩺 <i>Experiment 2</i>
+
+### 🩺 <i>Experiment 3</i>
+
+### 🩺 <i>Experiment 4</i>
+
+### 🩺 <i>Experiment 5</i>
+
 ## 3️⃣ Classification Task
+
+## ✅ Conclusion
+
+## ⛔ .gitignore

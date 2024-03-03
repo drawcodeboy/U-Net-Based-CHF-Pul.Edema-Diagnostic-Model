@@ -43,11 +43,11 @@
 
 <code>streamlit</code>을 통해 구현한 웹으로 프로젝트의 전반적인 프로세스를 요약합니다.
 
-<center>
+<div = align="center">
 
 ![streamlit_gif](./streamlit/oms_streamlit.gif)
 
-</center>
+</div>
 
 ## 1️⃣ Segmentation Task
 
@@ -66,13 +66,13 @@
   $$DiceLoss = \frac{2\times(|A|\cap|B|)}{|A|+|B|}$$
 - 종합적인 학습 스펙은 모두 동일하게 아래와 같습니다.
 
-<center>
+<div align="center">
 
 |  Loss function   |  Opimizer   | Learning rate | Decay step | Decay rate |   Activation   |  Epochs   |
 | :--------------: | :---------: | :-----------: | :--------: | :--------: | :------------: | :-------: |
 | <u>Dice Loss</u> | <u>Adam</u> |  <u>1e-4</u>  |  <u>5</u>  | <u>0.1</u> | <u>Sigmoid</u> | <u>50</u> |
 
-</center>
+</div>
 
 ### 📄 Performance Table
 
@@ -84,7 +84,7 @@
   - Fast mode
   - Accurate mode
 
-<center>
+<div align="center">
 
 |        Model        |       Accuracy       |       F1-Score       |         AUC          |         MCC          |
 | :-----------------: | :------------------: | :------------------: | :------------------: | :------------------: |
@@ -94,7 +94,7 @@
 |   U-Net++ (fast)    |        94.60%        |        0.9795        |        0.9720        |        0.9711        |
 | U-Net++ (accurate)  |        94.59%        |        0.9793        |        0.9722        |        0.9708        |
 
-</center>
+</div>
 ### 📄 Result
 
 - 학습 결과 Segmentation Task에서는 <u><b>U-Net</b></u>을 사용하게 되었습니다.
@@ -141,9 +141,9 @@
 - 사용된 두 모델은 각 <u><b>DenseNet121, VGG16</b></u>입니다.
 - 또한, 정상과 폐부종에 대한 비율이 불균형합니다.
 
-<center><img src="./figures/figure5.jpg" width="500"></center>
+<div align="center"><img src="./figures/figure5.jpg" width="500"></div>
 
-<center>
+<div align="center">
 
 |    Model    | Experiment | Accuracy | F1-Score |  AUC   | Sensitivity | Specificity |
 | :---------: | :--------: | :------: | :------: | :----: | :---------: | :---------: |
@@ -158,7 +158,8 @@
 |    VGG16    |     4      |  62.38%  |  0.6715  | 0.6681 |   0.6657    |   0.5929    |
 |    VGG16    |     5      |  61.90%  |  0.7320  | 0.6501 |   0.8723    |   0.2448    |
 
-</center>
+</div>
+
 ## ✅ Conclusion
 
 ## ⛔ .gitignore

@@ -1,4 +1,4 @@
-# Exploring Diagnostic Methodology for Pulmonary Edema Diagnosis in Patients with Congestive Heart Failure Using U-Net Based Architecture
+uㅕb# Exploring Diagnostic Methodology for Pulmonary Edema Diagnosis in Patients with Congestive Heart Failure Using U-Net Based Architecture
 
 ### U-Net 기반 아키텍처를 활용한 울혈성 심부전 환자 폐부종 진단 방법론 연구
 
@@ -95,10 +95,10 @@
 | U-Net++ (accurate)  |        94.59%        |        0.9793        |        0.9722        |        0.9708        |
 
 </div>
-### 📄 Result
+
+### ✅ Result
 
 - 학습 결과 Segmentation Task에서는 <u><b>U-Net</b></u>을 사용하게 되었습니다.
-- Epoch가 더 컸다면, 다른 모델이 더 성능이 높았을 것으로 추측하고 있습니다.
 
 ## 2️⃣ 5 Data Processing Methods
 
@@ -139,9 +139,30 @@
 
 - Classification Task를 위해서는 두 가지 모델을 통해 5가지의 실험을 진행했습니다.
 - 사용된 두 모델은 각 <u><b>DenseNet121, VGG16</b></u>입니다.
-- 또한, 정상과 폐부종에 대한 비율이 불균형합니다.
+- <u><b>DenseNet121</b></u>은 더 깊은 모델의 역할을 하기 위해 ImageNet-1K를 pre-train한 모델을 사용하며, 모든 레이어에 대해서 학습이 가능하도록 했습니다.
+- <u><b>VGG16</b></u>은 더 얕은 모델의 역할을 하기 위해 ImageNet-1K를 pre-train한 모델을 사용하였으나 pre-train된 레이어에 대해서는 Model freezing을 시킨 상태로 진행했습니다.
+- 이러한 2가지 버전의 모델을 통해 Method의 일반화를 도출하였습니다.
+
+### 📄 Imbalanced Data
+
+- 프로젝트를 위해 추출한 데이터셋에는 정상과 폐부종에 대한 비율이 불균형합니다.
 
 <div align="center"><img src="./figures/figure5.jpg" width="500"></div>
+
+- 이를 해결하기 위해서 해당 실험에는 <u><b>Weighted binary cross-entropy function</b></u>을 Loss function으로 사용합니다.
+  $$L(y,\hat y)=-\frac{1}{N}\sum_{i=1}^{N}w_i[y_i\log(\hat y_i) + (1-y_i)\log(1-\hat y_i)]$$
+
+### 📄 Train Setting
+
+- DenseNet121과 VGG16의 서로 다른 역할을 하기 때문에 학습을 진행하는 과정에서도 특정 부분들이 다릅니다.
+- 학습 스펙은 다음과 같습니다.
+
+|    Model    | Image size |            Loss function             |  Opimizer   | Learning rate | Decay step | Decay rate |   Activation   |   Epochs   |
+| :---------: | :--------: | :----------------------------------: | :---------: | :-----------: | :--------: | :--------: | :------------: | :--------: |
+| DenseNet121 |  224x224   | <u>Weighted binary cross-entropy</u> | <u>Adam</u> |  <u>1e-4</u>  |  <u>5</u>  | <u>0.1</u> | <u>Sigmoid</u> | <u>100</u> |
+|    VGG16    |   64x64    | <u>Weighted binary cross-entropy</u> | <u>Adam</u> |  <u>1e-4</u>  |  <u>5</u>  | <u>0.1</u> | <u>Sigmoid</u> | <u>30</u>  |
+
+### 📄 Performance Table
 
 <div align="center">
 
@@ -160,6 +181,31 @@
 
 </div>
 
+### ✅ Result
+
+- <u>전반적으로 <b>Experiment 1</b>이 원본 이미지를 활용한 <b>Experiment 4, 5</b>보다 성능을 우수함을 나타냅니다.</u>
+
 ## ✅ Conclusion
 
+- 해당 프로젝트에서는 U-Net 기반 아키텍처를 통해 폐 영역을 추출한 이미지를 원본 이미지와 결합하는 method들을 고안했습니다.
+- 제안한 method들을 사용하여 정상과 폐부종을 분류하기 위해 DenseNet121과 VGG16 사용해 비교를 진행했습니다.
+- <b>Experiment</b> 1에서 <b><u>75.00%, 63.81%</u></b>의 Accuracy로 <b>Experiment 5</b>에서 <b><u>74.05%, 61.90%</u></b>의 Accuarcy보다 성능이 우수함을 보였습니다.
+- 본 연구를 통해서 폐부종을 진단하는 것에 있어 폐 영역에 대한 집중도를 높이는 방법이 더 좋은 것을 알 수 있었고, 이에 따라 폐부종 뿐만 아니라 다양한 폐 질환을 분류하는 모델을 구축할 때, 본 연구에서 제안하는 방법이 활용되어 더 높은 성능을 보여줄 것으로 기대할 수 있습니다.
+
 ## ⛔ .gitignore
+
+- Repository에는 디렉토리의 용량이 크기 때문에 올라가지 못 한 파일들이 있습니다.
+- 아래는 해당 디렉토리의 리스트입니다.
+- <u>해당 디렉토리들은 전부 로컬 리포지토리에서 관리를 하고 있습니다.</u>
+- 또한, 이 디렉토리들이 없는 경우에는 <code>streamlit</code>의 사용이 불가합니다.
+
+<div align="center">
+
+|   Type    | File Name                                              |  Size  |          Description          |
+| :-------: | :----------------------------------------------------- | :----: | :---------------------------: |
+| Directory | <code>classification/densenet_parameters</code>        | 620MB  |   DenseNet121 학습 파라미터   |
+| Directory | <code>classification2/vgg_parameters</code>            | 19.2GB |      VGG16 학습 파라미터      |
+| Directory | <code>segmentation/parameters</code>                   | 766MB  | U-Net 기반 모델 학습 파라미터 |
+| Directory | <code>segmentation inference/target_and_predict</code> | 1.96GB |  U-Net 기반 모델 추론 데이터  |
+
+</center>

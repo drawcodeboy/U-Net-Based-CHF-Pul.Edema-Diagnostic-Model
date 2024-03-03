@@ -185,7 +185,7 @@
 
 - <u>전반적으로 <b>Experiment 1</b>이 원본 이미지를 활용한 <b>Experiment 4, 5</b>보다 성능을 우수함을 나타냅니다.</u>
 
-## ✅ Conclusion
+## 📚 Conclusion
 
 - 해당 프로젝트에서는 U-Net 기반 아키텍처를 통해 폐 영역을 추출한 이미지를 원본 이미지와 결합하는 method들을 고안했습니다.
 - 제안한 method들을 사용하여 정상과 폐부종을 분류하기 위해 DenseNet121과 VGG16 사용해 비교를 진행했습니다.

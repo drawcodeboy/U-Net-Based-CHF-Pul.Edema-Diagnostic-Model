@@ -43,7 +43,11 @@
 
 <code>streamlit</code>을 통해 구현한 웹으로 프로젝트의 전반적인 프로세스를 요약합니다.
 
+<center>
+
 ![streamlit_gif](./streamlit/oms_streamlit.gif)
+
+</center>
 
 ## 1️⃣ Segmentation Task
 
@@ -62,9 +66,13 @@
   $$DiceLoss = \frac{2\times(|A|\cap|B|)}{|A|+|B|}$$
 - 종합적인 학습 스펙은 모두 동일하게 아래와 같습니다.
 
+<center>
+
 |  Loss function   |  Opimizer   | Learning rate | Decay step | Decay rate |   Activation   |  Epochs   |
 | :--------------: | :---------: | :-----------: | :--------: | :--------: | :------------: | :-------: |
 | <u>Dice Loss</u> | <u>Adam</u> |  <u>1e-4</u>  |  <u>5</u>  | <u>0.1</u> | <u>Sigmoid</u> | <u>50</u> |
+
+</center>
 
 ### 📄 Performance Table
 
@@ -76,6 +84,8 @@
   - Fast mode
   - Accurate mode
 
+<center>
+
 |        Model        |       Accuracy       |       F1-Score       |         AUC          |         MCC          |
 | :-----------------: | :------------------: | :------------------: | :------------------: | :------------------: |
 | <u><b>U-Net</b></u> | <u><b>94.67%</b></u> | <u><b>0.9808</b></u> | <u><b>0.9749</b></u> | <u><b>0.9729</b></u> |
@@ -84,10 +94,11 @@
 |   U-Net++ (fast)    |        94.60%        |        0.9795        |        0.9720        |        0.9711        |
 | U-Net++ (accurate)  |        94.59%        |        0.9793        |        0.9722        |        0.9708        |
 
+</center>
 ### 📄 Result
 
 - 학습 결과 Segmentation Task에서는 <u><b>U-Net</b></u>을 사용하게 되었습니다.
-- Epoch가 더 컸다면, 다른 모델들이 더 성능이 높았을 것으로 추측하고 있습니다.
+- Epoch가 더 컸다면, 다른 모델이 더 성능이 높았을 것으로 추측하고 있습니다.
 
 ## 2️⃣ 5 Data Processing Methods
 
@@ -106,14 +117,48 @@
 
 ### 🩺 <i>Experiment 2</i>
 
+- Experiment 1과 같이 원본 이미지에 대해서 가우시안 필터링을 적용합니다. 하지만, 여기서 폐 영역 이미지에 대해서 제거합니다.
+- 그리고, 폐 영역 이미지를 합쳐서 결과적으로 폐 영역을 제외한 원본 이미지에 대해서만 가우시안 필터링이 적용된 이미지를 사용하게 됩니다.
+- 해당 Method를 적용한 figure는 2번째와 같습니다.
+
 ### 🩺 <i>Experiment 3</i>
+
+- 해당 실험에서는 폐 영역 이미지만을 사용합니다.
+
+* 해당 Method를 적용한 figure는 3번째와 같습니다.
 
 ### 🩺 <i>Experiment 4</i>
 
+- 원본 이미지를 사용하며, figure는 4번째와 같습니다.
+
 ### 🩺 <i>Experiment 5</i>
+
+- 원본 이미지에 가우시안 필터링을 적용하며, figure는 5번째와 같습니다.
 
 ## 3️⃣ Classification Task
 
+- Classification Task를 위해서는 두 가지 모델을 통해 5가지의 실험을 진행했습니다.
+- 사용된 두 모델은 각 <u><b>DenseNet121, VGG16</b></u>입니다.
+- 또한, 정상과 폐부종에 대한 비율이 불균형합니다.
+
+<center><img src="./figures/figure5.jpg" width="500"></center>
+
+<center>
+
+|    Model    | Experiment | Accuracy | F1-Score |  AUC   | Sensitivity | Specificity |
+| :---------: | :--------: | :------: | :------: | :----: | :---------: | :---------: |
+| DenseNet121 |     1      |  75.00%  |  0.7965  | 0.8090 |   0.8204    |   0.6460    |
+| DenseNet121 |     2      |  73.93%  |  0.7932  | 0.7951 |   0.8383    |   0.5929    |
+| DenseNet121 |     3      |  73.45%  |  0.7890  | 0.7936 |   0.8323    |   0.5900    |
+| DenseNet121 |     4      |  73.57%  |  0.7815  | 0.7901 |   0.7924    |   0.6519    |
+| DenseNet121 |     5      |  74.05%  |  0.7846  | 0.7948 |   0.7924    |   0.6637    |
+|    VGG16    |     1      |  63.81%  |  0.7164  | 0.6628 |   0.7665    |   0.4484    |
+|    VGG16    |     2      |  63.45%  |  0.7369  | 0.6570 |   0.8583    |   0.3038    |
+|    VGG16    |     3      |  64.52%  |  0.7545  | 0.6659 |   0.8483    |   0.3451    |
+|    VGG16    |     4      |  62.38%  |  0.6715  | 0.6681 |   0.6657    |   0.5929    |
+|    VGG16    |     5      |  61.90%  |  0.7320  | 0.6501 |   0.8723    |   0.2448    |
+
+</center>
 ## ✅ Conclusion
 
 ## ⛔ .gitignore

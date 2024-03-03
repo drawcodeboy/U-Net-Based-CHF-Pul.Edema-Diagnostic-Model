@@ -99,9 +99,9 @@
 
 - 원본 이미지에 대해서는 <b>가우시안 필터링(Gaussian Filtering)</b>을 적용하고, 폐 영역 이미지와 블랜딩을 하는 Method입니다.
 - 가우시안 필터링은 비전 분야에서 노이즈 제거 효과를 하고 있으며, 가우시안 분포에 따라 중심 픽셀로부터 멀어질수록 가중치를 적게주는 역할을 하여 데이터를 처리합니다.
-  $$ G(x,y)=\frac{1}{2\pi\sigma}e^{-\frac{x^2+y^2}{2\sigma^2}}$$
+  $$G(x,y)=\frac{1}{2\pi\sigma}e^{-\frac{x^2+y^2}{2\sigma^2}}$$
 - <b>이미지 블랜딩(Image Blending)</b>은 두 이미지를 서로 합칠 때, 가중치를 통해 합치는 방법입니다.
-  $$ g(x)=(1-\alpha)f_1(x)+\alpha f_2(x)$$
+  $$g(x)=(1-\alpha)f_1(x)+\alpha f_2(x)$$
 - 해당 Method를 적용한 figure는 1번째와 같습니다.
 
 ### 🩺 <i>Experiment 2</i>

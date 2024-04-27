@@ -8,9 +8,7 @@
 
 ## 📝 Project Description
 
-[📌 Doby's Lab (BLOG): U-Net 기반 아키텍처를 활용한 울혈성 심부전 환자 폐부종 진단 방법론 연구]()
-
-- 추후 추가 예정
+[📌 Doby's Lab (BLOG): U-Net 기반 아키텍처를 활용한 울혈성 심부전 환자 폐부종 진단 방법론 연구](https://draw-code-boy.tistory.com/592)
 
 ## 🏃‍♂️ Motivation, OMS (One-Man Show Project)
 

@@ -2,13 +2,11 @@
 
 ### U-Net 기반 아키텍처를 활용한 울혈성 심부전 환자 폐부종 진단 방법론 연구
 
-#### <div align="center"><b><a href="">⭐ 한국정보통신학회 JKIICE 게재 확정 ⭐</a></b></div>
-
-- 출판 후, 링크 추가 예정
+#### <div align="center"><b><a href="https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11758380">⭐ 한국정보통신학회 JKIICE 게재 (Paper Link) ⭐</a></b></div>
 
 ## 📝 Project Description
 
-[📌 Doby's Lab (BLOG): U-Net 기반 아키텍처를 활용한 울혈성 심부전 환자 폐부종 진단 방법론 연구](https://draw-code-boy.tistory.com/592)
+[📌 Doby's Lab (Blog): U-Net 기반 아키텍처를 활용한 울혈성 심부전 환자 폐부종 진단 방법론 연구](https://draw-code-boy.tistory.com/592)
 
 ## 🏃‍♂️ Motivation, OMS (One-Man Show Project)
 

@@ -2,27 +2,11 @@
 
 ### U-Net 기반 아키텍처를 활용한 울혈성 심부전 환자 폐부종 진단 방법론 연구
 
-#### <div align="center"><b><a href="https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11758380">⭐ 한국정보통신학회 JKIICE 게재 (Paper Link) ⭐</a></b></div>
+#### <div align="center"><b><a href="https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11758380">📌 한국정보통신학회 JKIICE 게재 (Paper Link) 📌</a></b></div>
 
 ## 📝 Project Description
 
 [📌 Doby's Lab (Blog): U-Net 기반 아키텍처를 활용한 울혈성 심부전 환자 폐부종 진단 방법론 연구](https://draw-code-boy.tistory.com/592)
-
-## 🏃‍♂️ Motivation, OMS (One-Man Show Project)
-
-> 본 연구 프로젝트 및 논문 투고의 동기는 지난 해 복학하여 돌아온 학기부터 비롯된 불안에서 시작되었습니다.
->
-> 생각의 꼬리를 물고 물어 <b><u>'난 연구를 할 수 있는 사람일까?'</u></b>라는 의문이 들었고, 결론적으로 이를 해소할 수 있는 것은 연구의 시작부터 끝까지 직접 해보는 것 밖에 없겠다고 판단했습니다.
->
-> 스스로 (1)프로젝트의 아이디어, (2)구현 및 실험, (3)논문 작성까지 모든 프로세스들을 겪어보는 것을 통해 자신에게 증명을 해주고 싶었던 프로젝트입니다.
->
-> 그래서 이 프로젝트의 이름을 저는 <b><u>OMS(One-Man Show)</u></b>라는 이름으로 짓고서 프로젝트를 하는 동안 다시 혼자가 되어 힘껏 노를 저었습니다.
->
-> 물론, 아직까지 직접 연구실에 들어가서 연구를 배우고, 해본 적은 없기에 제가 함부로 연구를 해봤다고 말하는 것은 오만한 것이라는 생각이 듭니다.
->
-> 다만, 이번 프로젝트를 통해 앞으로 더 배워나가야할 것들, 초점을 두어야 할 곳들이 무엇인지 명확히 알았기에 더 겸손한 자세로 헤쳐나가겠습니다.
->
-> 긴 글 읽어주셔서 감사합니다. 짧고 길었던 OMS 프로젝트를 마치며.
 
 ## 📁 Dataset
 

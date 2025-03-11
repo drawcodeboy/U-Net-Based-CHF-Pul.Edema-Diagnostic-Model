@@ -222,3 +222,14 @@
 - 최근 이 프로젝트 이후, 새로운 프로젝트를 하면서 오픈 소스를 리뷰할 일이 많아졌습니다.
 - 이를 통해 이번 프로젝트의 파일 시스템 구성에 아쉬운 부분들이 많다는 것을 알게 되었습니다. (중복적인 부분, 이로 인한 노트북 파일 간에 무결성 저하)
 - 앞으로 오픈 소스와 같은 패키지, 모듈 구조를 적극적으로 차용하여 프로젝트를 구성해야 합니다.
+## Citing
+```
+@article{권다운2024u,
+  title={U-Net 기반 아키텍처를 활용한 울혈성 심부전 환자 폐부종 진단 방법론 연구.},
+  author={권다운},
+  journal={Journal of the Korea Institute of Information \& Communication Engineering},
+  volume={28},
+  number={4},
+  year={2024}
+}
+```
